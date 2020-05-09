@@ -3,22 +3,37 @@ package encryptdecrypt;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        char[] chars = scanner.nextLine().toCharArray();
-        int key = scanner.nextInt();
-        String mySimple = "abcdefghijklmnopqrstuvwxyz";
-//        String myRevert = new String ("zyxwvutsrqponmlkjihgfedcba");
-        char[] abc = mySimple.toCharArray();
-
+    public static void encryption(String text, int key) {
+        char[] chars = text.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            for (int j = 0; j < abc.length; j++) {
-                if (chars[i] == abc[j]) {
-                    chars[i] = abc[(j + key) % 26];
-                    break;
-                }
-            }
+            chars[i] += key;
             System.out.print(chars[i]);
         }
+
+    }
+
+    public static void decryption(String text, int key){
+        char[] chars = text.toCharArray();
+        for (int i = 0; i < chars.length; i++){
+            chars[i] -= key;
+            System.out.print(chars[i]);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String operation = scanner.nextLine();
+        String text = scanner.nextLine();
+        int key = scanner.nextInt();
+
+        switch (operation){
+            case "enc":
+                encryption(text, key);
+                break;
+            case "dec":
+                decryption(text, key);
+                break;
+        }
+
     }
 }
