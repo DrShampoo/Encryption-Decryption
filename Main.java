@@ -21,10 +21,23 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String operation = scanner.nextLine();
-        String text = scanner.nextLine();
-        int key = scanner.nextInt();
+        String operation = "enc";
+        String text = "";
+        int key = 0;
+
+        for (int i = 0; i < args.length-1; i++){
+            switch (args[i]) {
+                case "-mode":
+                    operation = args[i + 1];
+                    break;
+                case "-key":
+                    key = Integer.parseInt(args[i + 1]);
+                    break;
+                case "-data":
+                    text = args[i + 1];
+                    break;
+            }
+        }
 
         switch (operation){
             case "enc":
